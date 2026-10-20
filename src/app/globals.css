@@ -1,26 +1,141 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-light-bg: #F8F7FC;
+  --color-surface: #FFFFFF;
+  --color-text-primary: #171320;
+  --color-text-secondary: #625D70;
+  --color-primary: #7657F6;
+  --color-primary-hover: #6242E6;
+  --color-primary-light: #EAE2FF;
+  --color-accent-blue: #DFF4FF;
+  --color-accent-pink: #FFE8EE;
+  --color-dark-bg: #17102C;
+  --color-dark-surface: #221840;
+  --color-dark-elevated: #2C2052;
+  --color-dark-border: rgba(255, 255, 255, 0.12);
+  --color-light-border: rgba(118, 87, 246, 0.12);
+  
+  --radius-card: 24px;
+  --radius-badge: 9999px;
+  
+  --shadow-subtle: 0 4px 20px -2px rgba(23, 19, 32, 0.05);
+  --shadow-floating: 0 20px 48px -12px rgba(23, 19, 32, 0.12);
+  --shadow-glow: 0 0 32px 0 rgba(118, 87, 246, 0.25);
+  --shadow-dark-card: 0 24px 60px -15px rgba(0, 0, 0, 0.45);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 88px;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-light-bg);
+  color: var(--color-text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, "Noto Sans KR", "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  overflow-x: hidden;
+}
+
+/* Base utilities */
+.brand-container {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+@media (min-width: 768px) {
+  .brand-container {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .brand-container {
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+}
+
+/* Hero gradient */
+.hero-gradient-bg {
+  background: radial-gradient(120% 120% at 50% 10%, #FFFFFF 0%, #F5F1FF 45%, #EBF4FE 75%, #FFF0F4 100%);
+}
+
+/* Dark section gradient */
+.dark-section-bg {
+  background-color: var(--color-dark-bg);
+  background-image: 
+    radial-gradient(ellipse 60% 50% at 50% 0%, rgba(118, 87, 246, 0.18), transparent 70%),
+    radial-gradient(circle at 10% 30%, rgba(118, 87, 246, 0.08), transparent 40%),
+    radial-gradient(circle at 90% 70%, rgba(223, 244, 255, 0.06), transparent 40%);
+}
+
+/* Cards & Surfaces */
+.surface-light {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-light-border);
+  box-shadow: var(--shadow-floating);
+  border-radius: var(--radius-card);
+}
+
+.surface-dark {
+  background-color: var(--color-dark-surface);
+  border: 1px solid var(--color-dark-border);
+  box-shadow: var(--shadow-dark-card);
+  border-radius: var(--radius-card);
+}
+
+.surface-dark-elevated {
+  background-color: var(--color-dark-elevated);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: var(--radius-card);
+}
+
+/* Section vertical spacing */
+.section-spacing {
+  padding-top: 56px;
+  padding-bottom: 56px;
+}
+
+@media (min-width: 768px) {
+  .section-spacing {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-spacing {
+    padding-top: 112px;
+    padding-bottom: 112px;
+  }
+}
+
+/* Focus styles for keyboard accessibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
